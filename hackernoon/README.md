@@ -15,15 +15,15 @@ These are broken into categories for reference.
 
 ### 2. How do you find the duplicate number on a given integer array?
 
-### 3. How do you find the largest and smallest number in an unsorted integer array?
-
-### 4. How do you find all pairs of an integer array whose sum is equal to a given number?
-
-### 5. How do you find duplicate numbers in an array if it contains multiple duplicates?
+### 3. How do you find duplicate numbers in an array if it contains multiple duplicates?
 
  * also How are duplicates removed from an array without using any library?
  * also How are duplicates removed from a given array in Java?
  * also How do you remove duplicates from an array in place?
+
+### 4. How do you find the largest and smallest number in an unsorted integer array?
+
+### 5. How do you find all pairs of an integer array whose sum is equal to a given number?
 
 #### Solve for:
 
