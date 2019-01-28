@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array One</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+	let test1Single =  Array.from({length: 100}, (v, k) => k+1);
+	test1Single.splice(36, 1);
+
+	let test2Single =  Array.from({length: 100}, (v, k) => k+1);
+	test2Single.splice(97, 1);
+
+	console.log(`Single Test 1 expecting 37 got ${findSingleMissing(test1Single)}`);
+	console.log(`Single Test 2 expecting 98 got ${findSingleMissing(test2Single)}`);
+
+	let test1Multi =  Array.from({length: 100}, (v, k) => k+1);
+	test1Multi.splice(32, 4);
+
+	let test2Multi =  Array.from({length: 100}, (v, k) => k+1);
+	test2Multi.splice(4, 2);
+	test2Multi.splice(61, 1);
+	test2Multi.splice(69, 1);
+
+	let test3MultiScambled = [19,7,4,25,28,21,18,12,20,6,17,1,13,11,26,2,3,9,22,27,14,24,29,16,5,10,23,8,30,15];
+	test3MultiScambled.splice(2,4);
+
+	console.log(`Multi Test 1 expecting 33,34,35,36 got ${findMultiMissing(test1Multi, 100).join()}`);
+	console.log(`Multi Test 1 expecting 5,6,64,73 got ${findMultiMissing(test2Multi, 100).join()}`);
+	console.log(`Multi Test 3 scrambled expecting 4,21,25,28 got ${findMultiMissing(test3MultiScambled, 30).join()}`);
+
+
+	function findSingleMissing(numArray) {
+		return ((numArray.length + 1) * (numArray.length + 2) / 2) - numArray.reduce((a, b) => a + b); 
+	}
+
+
+	function findMultiMissing(numArray, realLength) {
+		let allNums = Array.from({length: realLength}, (v, k) => k+1);
+
+		numArray.forEach((v) => {
+			allNums[v-1] = 0;
+		}); 
+
+		return allNums.filter((x) => x != 0);
+	}
+
+</script>
+<body>
+<h1> 1. How do you find the missing number in a given integer array of 1 to 100?</h1>
+
+<p>Solve for:</p>
+
+<ul>
+	<li>Only 1 missing number</li>
+	<li>More than 1 missing number - Sorted Array</li>
+	<li>Same as above but Unsorted Array</li>
+</ul>
+
+<h2>Solution</h2>
+<p>Check console for working solution</p>
+
+<p>A single missing number can be solved with the equation (NumArrayLength + 1) * (NumArrayLength + 2) / 2 - sum of NumArray</p>
+
+<p>The other 2 are done at the same time, by first generating an array of every expected number. By blanking them out as they appear in the array, i can then use the javascript filter function to find the missing numbers. In total this is about 3N which isn't too bad. in practice both Array.from and Array.filter are less efficient then using a for loop.</p>
+
+<p>In practice i'd rather had access to something like a bitset which would allow the same solution without effectively doubling the memory footprint.</p>
+
+<p>In a sorted array this can be solved in one loop. Just go through once and mark out the numbers that aren't where they are meant to be</p>
+</body>
+</html>
