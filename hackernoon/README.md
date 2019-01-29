@@ -15,9 +15,10 @@ These are broken into categories for reference.
 
 ### 2. How do you find the duplicate number on a given integer array?
 
-### 3. How do you find duplicate numbers in an array if it contains multiple duplicates?
+ * How do you find duplicate numbers in an array if it contains multiple duplicates?
 
- * also How are duplicates removed from an array without using any library?
+### 3. How are duplicates removed from an array without using any library?
+
  * also How are duplicates removed from a given array in Java?
  * also How do you remove duplicates from an array in place?
 

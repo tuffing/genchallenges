@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Two</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+	let test1 =  Array.from({length: 100}, (v, k) => k+1);
+	test1[36] = 1;
+	test1[38] = 1;
+	test1[39] = 4;
+
+	let test2 =  Array.from({length: 100}, (v, k) => k+1);
+	test2[97] = 34;
+	test2[92] = 31;
+	test2[55] = 31;
+
+	let test3 = [19,7,4,25,28,21,18,12,20,6,17,1,1,1,1,13,11,26,2,3,3,9,22,27,14,3,24,29,16,5,10,10,23,8,30,15]; 
+	let test4 = [19,7,4,25,25,25,28,21,18,12,20,6,17,1,1,1,1,13,11,26,2,3,3,9,22,27,14,3,24,24,24,29,16,5,5,5,10,10,23,8,30,30,15]; 
+
+	console.log(`Q2 Sol 1 Test 1 expecting 1,4 got ${findDuplicatesOne(test1)}`);
+	console.log(`Q2 Sol 1 Test 2 expecting 31,34 got ${findDuplicatesOne(test2)}`);
+	console.log(`Q2 Sol 1 Test 3 expecting 1,3,10 got ${findDuplicatesOne(test3)}`);
+
+	console.log(`Q2 Sol 2 Test 1 expecting 1,4 got ${findDuplicatesTwo(test1)}`);
+	console.log(`Q2 Sol 2 Test 2 expecting 31,34 got ${findDuplicatesTwo(test2)}`);
+	console.log(`Q2 Sol 2 Test 3 expecting 1,3,10 got ${findDuplicatesTwo(test3)}`);
+
+	console.log(`Q3 Sol NOT In Place Test 1 expecting nums 1-30 got ${removeDuplicatesNotInPlace(test3)}`);
+	console.log(`Q3 Sol In Place Test 1 expecting nums 1-30 got ${removeDuplicatesInPlace(test4)}`);
+
+
+	function findDuplicatesOne(numArray) {
+		numArray.sort((a,b) => a > b);
+		return Array.from(new Set(numArray.filter((v,i) => i != 0 && numArray[i - 1] == v)));
+	}
+
+	function findDuplicatesTwo(numArray) {
+		numArray.sort((a,b) => a > b);
+		let result = new Set();
+		
+		for (let i = 1; i < numArray.length; i++) {
+			if (numArray[i-1] == numArray[i]) {
+				result.add(numArray[i]);
+			}
+		}
+
+		return Array.from(result);
+	}
+
+ 	function removeDuplicatesNotInPlace(numArray) {
+		numArray.sort((a,b) => a > b);
+		return numArray.filter((v,i) => !i || numArray[i - 1] != v);
+ 	}
+
+ 	function removeDuplicatesInPlace(numArray) {
+		numArray.sort((a,b) => a > b);
+ 		let length = numArray.length;
+ 		numArray.push(numArray[0]);
+
+ 		for (let i = 1; i < length; i++) {
+ 			if (numArray[i-1] != numArray[i]) {
+ 				numArray.push(numArray[i]);
+ 			}
+ 		}
+
+ 		numArray.splice(0,length);
+
+ 		return numArray;
+ 	}
+
+</script>
+<body>
+<h4><em>Check console for working solution</em></h4>
+
+
+<h1>2. How do you find the duplicate number on a given integer array?</h1>
+
+<p><em>How do you find duplicate numbers in an array if it contains multiple duplicates?</em></p>
+
+<h2>#2 Solution</h2>
+
+<p>First solution uses some of the newer es6+ stuff. I then dump it into a set and return that set to remove the duplicates. This can be done without sets just by filtering again</p>
+
+<p>Second solution is basically the same thing but the for loop is explictly defined</p>
+
+
+<h1>3. How are duplicates removed from an array without using any library?</h1>
+
+<p>Solve for:</p>
+
+<ul>
+	<li>No sets (as too easy)</li>
+	<li>Give a solution In Place, and one not in place</li>
+</ul>
+
+<h2>#3 Solution</h2>
+
+<p>The not in place solution is trivial, just sort the array an use an array filter</p>
+
+<p>I expected the in place solution to be a bit harder, it was slightly more involved. My biggest concern was avoiding removing the duplicates as I found them, a this would mean everything ahead of the element being reindexed - this would take the procedure into n^2 onwards territory.. </p>
+
+<p>Solution? As I identify a unique number, place them all at the end! Then I can use Array.splice to remove the entire front of the array in one go. Effectively doing the remove procedure in sub n time.</p>
+
+</body>
+</html>

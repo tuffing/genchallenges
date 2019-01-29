@@ -47,6 +47,8 @@
 
 </script>
 <body>
+<h4><em>Check console for working solution</em></h4>
+
 <h1> 1. How do you find the missing number in a given integer array of 1 to 100?</h1>
 
 <p>Solve for:</p>
@@ -58,8 +60,6 @@
 </ul>
 
 <h2>Solution</h2>
-<p>Check console for working solution</p>
-
 <p>A single missing number can be solved with the equation (NumArrayLength + 1) * (NumArrayLength + 2) / 2 - sum of NumArray</p>
 
 <p>The other 2 are done at the same time, by first generating an array of every expected number. By blanking them out as they appear in the array, i can then use the javascript filter function to find the missing numbers. In total this is about 3N which isn't too bad. in practice both Array.from and Array.filter are less efficient then using a for loop.</p>
