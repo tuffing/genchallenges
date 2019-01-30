@@ -35,3 +35,5 @@ These are broken into categories for reference.
 ### 6. How is an integer array sorted in place using the quicksort algorithm? 
 
 ### 7. How do you reverse an array in place in Java?
+
+### 8.  How to find the smallest positive integer value that cannot be represented as sum of any subset of a given array?
