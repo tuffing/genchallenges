@@ -26,7 +26,8 @@ These are broken into categories for reference.
 
 ### 5. How do you find all pairs of an integer array whose sum is equal to a given number?
 
- * all pair means all pairs, so for num 3 if '1' and '2' appear twice then (1,2) and (1,2) should be returned twice. 
+ * For one solution all pair means all pairs, so for num 3 if '1' and '2' appear twice then (1,2) should be returned four times as each element is a different pair.
+ * Solve it for reduced pairs
  * do not return reverse pairings e.g for num 3 if '1' and '2' only appear once, no (1,2) AND (2,1). Just one or the other.
  * the array can contain negatives
 
