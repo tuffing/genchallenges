@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Four</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+
+	let test1 = [19,7,4,25,28,21,18,-15,12,20,6,17,1,13,11,26,2,3,200,9,22,27,14,24,29,16,5,10,23,8,30,15];
+
+	console.log(`Test 1 expecting -15,200 got ${findMinMax(test1).join()}`);
+
+
+	function findMinMax(numArray) {
+		let min = Number.MAX_SAFE_INTEGER;
+		let max = Number.MIN_SAFE_INTEGER;
+
+		numArray.forEach((v) => {
+			if (v < min)
+				min = v;
+
+			if (v > max)
+				max = v;
+		});
+
+		return [min,max];
+	}
+
+</script>
+<body>
+<h4><em>Check console for working solution</em></h4>
+
+<h1> 4. How do you find the largest and smallest number in an unsorted integer array?</h1>
+
+<h2>Solution</h2>
+<p>This is probably one of the most common coding challenges that appear in actual day to day life.</p>
+</body>
+</html>

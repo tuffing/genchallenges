@@ -26,6 +26,10 @@ These are broken into categories for reference.
 
 ### 5. How do you find all pairs of an integer array whose sum is equal to a given number?
 
+ * all pair means all pairs, so for num 3 if '1' and '2' appear twice then (1,2) and (1,2) should be returned twice. 
+ * do not return reverse pairings e.g for num 3 if '1' and '2' only appear once, no (1,2) AND (2,1). Just one or the other.
+ * the array can contain negatives
+
 #### Solve for:
 
  * Find the duplicate numbers
@@ -34,6 +38,6 @@ These are broken into categories for reference.
 
 ### 6. How is an integer array sorted in place using the quicksort algorithm? 
 
-### 7. How do you reverse an array in place in Java?
+### 7. How do you reverse an array in place in javascript (don't use .reverse)?
 
 ### 8.  How to find the smallest positive integer value that cannot be represented as sum of any subset of a given array?
