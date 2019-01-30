@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Eight</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+	let test1 =   [1, 3, 6, 10, 11, 15];
+	let test2 =   [1,2,6, 10, 11, 15];
+	let test3 =   [1,2,3,6, 10, 11, 15];
+	let test4 =   [1,2,3,4,5,6];
+	let test5 =   [1,1,2, 6, 10, 11, 15];
+	let test6 =   [1,2,2,7,10];
+	let test7 =   [1,1,1,1,2,8];
+	let test8 =   [1,1,1,1,2,7,15];
+
+
+	console.log(`Test 1 expecting 2 got ${findFirstPositive(test1)}`);
+	console.log(`Test 2 expecting 4 got ${findFirstPositive(test2)}`);
+	console.log(`Test 3 expecting 49 got ${findFirstPositive(test3)}`);
+	console.log(`Test 4 expecting 22 got ${findFirstPositive(test4)}`);
+	console.log(`Test 5 expecting 5 got ${findFirstPositive(test5)}`);
+	console.log(`Test 6 expecting 6 got ${findFirstPositive(test6)}`);
+	console.log(`Test 7 expecting 7 got ${findFirstPositive(test7)}`);
+	console.log(`Test 8 expecting 14 got ${findFirstPositive(test8)}`);
+
+
+	function findFirstPositive(numArray) {
+		let sum = 0;
+
+		for (let i = 0; i < numArray.length; i++) {
+			sum += numArray[i];
+
+			if (numArray.length == i + 1 || sum + 1 < numArray[i + 1])
+				return sum + 1;
+		}
+
+		return sum + 1;
+	}
+
+
+</script>
+<body> 
+<h4><em>Check console for working solution</em></h4>
+
+<h1> 8. How to find the smallest positive integer value that cannot be represented as sum of any subset of a given array? Do it within O(n).</h1>
+
+<h2>Solution</h2>
+<p>This challenge fulls into the category of sounding hard but is actually pretty simple.</p>
+
+<p>The 'represented as a sum of any subset' makes it sound like you have to calculate every possible sum, but you don't. There's an easier way - iterate over the array calculating the sum as you go. If at anytime your current sum + 1 is less than the next item in the array, that's your number.</p>
+</body>
+</html>
