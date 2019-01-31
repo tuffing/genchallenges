@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Six</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+
+	let test1 = [6, 5, 3, 1, 8, 7, 2, 4];
+	let test2 = [19,7,4,4,25,28,21,18,12,20,6,17,1,13,11,26,2,3,9,22,27,14,24,29,16,5,10,23,8,30,15];
+	let test3 = [58,13,57,61,55,47,74,21,98,49,80,69,3,63,9,88,24,50,78,56,1,62,41,84,8,28,67,70,92,93,46,39,86,12,87,83,54,51,44,76,10,53,82,15,40,20,100,75,33,37,64,22,95,38,59,5,18,4,17,60,45,97,36,48,68,65,30,43,11,6,42,96,25,29,72,35,73,85,89,31,16,32,81,90,2,91,26,52,79,99,34,7,94,77,27,71,23,14,19,66];
+
+
+	sort(test1, 0, test1.length);
+	console.log(`Test 1 got ${test1.join(',')}`);
+	
+	sort(test2, 0, test2.length);
+	console.log(`Test 2 got ${test2.join(',')}`);
+
+	sort(test3, 0, test3.length);
+	console.log(`Test 3 got ${test3.join(',')}`);
+
+	function sort(numArray, startIndex, endIndex) {
+		if (endIndex - startIndex <= 0)
+			return;
+
+		let pivIndex = startIndex;
+		let pivot = numArray[startIndex];
+
+		for (let i = startIndex + 1; i <= endIndex; i++) {
+			if (numArray[i] < pivot) {
+				if (pivIndex + 1 != i) {
+					let temp = numArray[pivIndex + 1];
+					numArray[pivIndex + 1] = numArray[i];
+					numArray[i] = temp;
+				} 
+				numArray[pivIndex] =  numArray[pivIndex + 1];
+				numArray[pivIndex + 1] = pivot;
+				pivIndex = pivIndex + 1;
+			}
+		}
+
+		sort(numArray, startIndex, pivIndex);
+		sort(numArray, pivIndex + 1, endIndex);
+	}
+
+
+</script>
+<body>
+<h4><em>Check console for working solution</em></h4>
+
+<h1> 6. How is an integer array sorted in place using the quicksort algorithm</h1>
+
+<h2>Solution</h2>
+<p>I picked the pivot as the first number in the subset for simplicity sake. This way whenever I found a new number lower than the pivot, all I had to do was swap the pivot with the number to it's right (after switching that with the number found)</p>
+
+<p>Other options would be to pick the pivot on the median etc - at the cost of having to find that first. Though this could be found as you do the comparisons. You still have to compare to every item but this would allow for therotically less swaps. And therefore cutting off sections of the array pretty quickly.</p>
+</body>
+</html>
