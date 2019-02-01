@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Seven</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+
+	let test1 = [2, 6, 3, 9, 11];
+	let test2 = [3, 9 ,2, 6, 3, 9, 11];
+	reverse(test1);
+	console.log(`Test 1 testing 2,6,3,9,11 expecting [11,9,3,6,2] got [${test1.join(',')}]`);
+	reverse(test2);
+	console.log(`Test 2 testing 3, 9 ,2, 6, 3, 9, 11 expecting [11,9,3,6,2,9,3] got ${test2.join(',')}`);
+
+
+	function reverse(numArray) {
+
+		for (let i = 0; i < Math.floor(numArray.length / 2); i++) {
+			numArray[i] = numArray[i] ^ numArray[numArray.length-i-1];
+			numArray[numArray.length-i-1] = numArray[numArray.length-i-1] ^ numArray[i];
+			numArray[i] = numArray[i] ^ numArray[numArray.length-i-1];
+		}
+
+		return numArray;
+	}
+
+</script>
+<body>
+<h4><em>Check console for working solution</em></h4>
+
+<h1> How do you reverse an array in place in javascript (don't use .reverse)?</h1>
+
+<h2>Solution</h2>
+<p>This is just typical value swapping. So used the XOR algorithm for fun which looks like:</p>
+<ul>
+<li>X = X ^ Y</li>
+<li>Y = Y ^ X</li>
+<li>X = X ^ Y</li>
+</ul>
+</body>
+</html>
