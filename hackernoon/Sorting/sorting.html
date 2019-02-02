@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array One</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+	let test1 = [6, 5, 3, 1, 8, 7, 2, 4,9];
+	let test2 = [19,7,4,4,25,28,21,18,12,20,6,17,1,13,11,26,2,3,9,22,27,14,24,29,16,5,10,23,8,30,15];
+	let test3 = [58,13,57,61,55,47,74,21,98,49,80,69,3,63,9,88,24,50,78,56,1,62,41,84,8,28,67,70,92,93,46,39,86,12,87,83,54,51,44,76,10,53,82,15,40,20,100,75,33,37,64,22,95,38,59,5,18,4,17,60,45,97,36,48,68,65,30,43,11,6,42,96,25,29,72,35,73,85,89,31,16,32,81,90,2,91,26,52,79,99,34,7,94,77,27,71,23,14,19,66];
+
+	insertionSort(test1);
+	console.log(`Insertion Sort Test 1 got ${insertionSort(test1).join()}`);
+	console.log(`Insertion Sort Test 2 got ${insertionSort(test2).join()}`);
+	console.log(`Insertion Sort Test 2 got ${insertionSort(test3).join()}`);
+	console.log('-----');
+	console.log(`Merge Sort Test 1 got ${mergeSort(test1).join()}`);
+	console.log(`Merge Sort Test 2 got ${mergeSort(test2).join()}`);
+	console.log(`Merge Sort Test 3 got ${mergeSort(test3).join()}`);
+	console.log('-----');
+	console.log(`Bucket Sort Test 1 got ${bucketSort(test3, 0, 100).join()}`);
+	console.log('-----');
+
+
+	function insertionSort(numArray) {
+		let nums = Array.from(numArray);
+
+		for (let i = 1; i < nums.length; i++) {
+			for (var j = i-1; j >= 0; j--) {
+				if (nums[j] <= nums[i]) {
+					t = j;
+					break;
+				}
+			}
+
+			nums.splice(j+1, 0,nums[i]);
+			nums.splice(i+1, 1);
+		}
+
+		return nums;
+	}
+
+
+	function mergeSort(numArray) {
+		let arrayOfArrays = [];
+		numArray.forEach((v) => {
+			arrayOfArrays.push([v]);
+		});
+
+		return mergeSortAlgorithm(arrayOfArrays);
+	}
+
+	function mergeSortAlgorithm(arrays) {
+		let newArrays = [];
+
+		if (arrays.length % 2 == 1) {
+			arrays.push([]);
+		}
+
+		while (arrays.length > 1) {
+			newArrays.push(merge(arrays.pop(), arrays.pop()));
+		}
+
+		if (newArrays.length == 1) {
+			return newArrays[0];
+		}
+
+		return mergeSortAlgorithm(newArrays);
+	}
+
+	function merge(a,b) {
+		let c = [];
+
+		while (a.length && b.length) {
+			if (a[0] < b[0]) {
+				c.push(a.shift());
+			}
+			else {
+				c.push(b.shift());
+			}
+		}
+
+		return c.concat(a).concat(b);
+	}
+
+	function bucketSort(nums, minRange, maxRange) {
+		//hashmaps in javascript explicitly remember insertion order (in the spec), useful here..
+		let buckets = new Map();
+		for (let i = minRange; i <= maxRange; i += maxRange/10) {
+			buckets.set(i,[]);
+		}
+
+		nums.forEach((v) => {
+			let test = Math.floor(v / (maxRange/10)) * 10;
+			buckets.get(test).push(v);
+		});
+
+		let result = [];
+		for (var value of buckets.values()) {
+			result = result.concat(insertionSort(value));
+		}
+
+		return result;
+	}
+
+</script>
+<body>
+<h4><em>Check console for working solution</em></h4>
+
+<h1> Sorting Algorithms</h1>
+
+<p>Solve for:</p>
+
+<ul>
+	<li>Insertion</li>
+	<li>Merge</li>
+	<li>Bucket</li>
+	<li>Counting</li>
+	<li>Radix</li>
+</ul>
+
+</body>
+</html>

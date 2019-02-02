@@ -42,3 +42,16 @@ These are broken into categories for reference.
 ### 7. How do you reverse an array in place in javascript (don't use .reverse)?
 
 ### 8.  How to find the smallest positive integer value that cannot be represented as sum of any subset of a given array?
+
+## Sorting
+
+
+### 1. How do you implement an insertion sort algorithm?
+
+### 2. How is a merge sort algorithm implemented?
+
+### 3. How do you implement a bucket sort algorithm?
+
+### 4. How do you implement a counting sort algorithm?
+
+### 5. How is a radix sort algorithm implemented?
