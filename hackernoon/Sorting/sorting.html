@@ -8,6 +8,9 @@
 	let test1 = [6, 5, 3, 1, 8, 7, 2, 4,9];
 	let test2 = [19,7,4,4,25,28,21,18,12,20,6,17,1,13,11,26,2,3,9,22,27,14,24,29,16,5,10,23,8,30,15];
 	let test3 = [58,13,57,61,55,47,74,21,98,49,80,69,3,63,9,88,24,50,78,56,1,62,41,84,8,28,67,70,92,93,46,39,86,12,87,83,54,51,44,76,10,53,82,15,40,20,100,75,33,37,64,22,95,38,59,5,18,4,17,60,45,97,36,48,68,65,30,43,11,6,42,96,25,29,72,35,73,85,89,31,16,32,81,90,2,91,26,52,79,99,34,7,94,77,27,71,23,14,19,66];
+	let test4 = [6, 5, 3, 1, 8, 7, 2, 4,9,1,2,1,2,1,1,2,2,6, 5, 3, 1, 8, 7, 2, 4,9]
+	let test5 = [329, 457, 657, 839, 436, 720, 355];
+	let test6 = [882,195,1257,37,1181,1232,1171,838,4,503,113,901,129,878,109,913,1251,500,1140,1023,748,1237,356,1272,975,1127,1297,1056,1128,842,120,1115,900,215,873,1139,1197,54,128,178,132,845,710,475,1195,506,630];
 
 	insertionSort(test1);
 	console.log(`Insertion Sort Test 1 got ${insertionSort(test1).join()}`);
@@ -20,6 +23,14 @@
 	console.log('-----');
 	console.log(`Bucket Sort Test 1 got ${bucketSort(test3, 0, 100).join()}`);
 	console.log('-----');
+	console.log(`Count Sort Test 1 got ${countSort(test1, 9).join()}`);
+	console.log(`Count Sort Test 2 got ${countSort(test2, 30).join()}`);
+	console.log(`Count Sort Test 3 got ${countSort(test3, 100).join()}`);
+	console.log(`Count Sort Test 4 got ${countSort(test4, 9).join()}`);
+	console.log('-----');
+	console.log(`Radix Sort Test 1 got ${radixSort(test5).join()}`);
+	console.log(`Radix Sort Test 2 got ${radixSort(test6).join()}`);
+
 
 
 	function insertionSort(numArray) {
@@ -101,6 +112,58 @@
 		}
 
 		return result;
+	}
+
+
+	function countSort(nums, max) {
+		let counter = Array(max+1).fill(0);
+
+		nums.forEach((v) => {
+			counter[v]++;
+		});
+
+		let sorted = [];
+
+		counter.forEach((count, ind) => {
+			for (let i = count; i > 0; i--) {
+				sorted.push(ind);
+			}
+		});
+
+		return sorted;
+	}
+
+	function radixSort(nums) {
+		let biggestDigit = Math.max(...nums).toString().length;;
+
+		for (let i = 0; i < biggestDigit; i++) {
+			nums = digitCountSort(nums, i);
+		}
+
+		return nums;
+	}
+
+	function digitCountSort(arrayA, digit) {
+		let c = Array(10).fill(0);
+		let b = Array(arrayA.length);
+
+		arrayA.forEach((v) => {
+			digitVal = Math.floor((v / Math.pow(10, digit))) % 10;
+			c[digitVal]++;
+		});
+
+		for (let i = 1; i < c.length; i++) {
+			c[i] += c[i-1];
+		}
+
+		while (arrayA.length) {
+			let val = arrayA.pop();
+			let dig = Math.floor((val / Math.pow(10, digit))) % 10;
+			b[c[dig]-1] = val;
+			c[dig]--;
+		}
+
+		return b;
 	}
 
 </script>
