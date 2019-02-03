@@ -55,3 +55,45 @@ These are broken into categories for reference.
 ### 4. How do you implement a counting sort algorithm?
 
 ### 5. How is a radix sort algorithm implemented?
+
+
+## Strings
+
+### How do you print duplicate characters from a string?
+
+### How do you check if two strings are anagrams of each other?
+
+### How do you print the first non-repeated character from a string?
+
+### How can a given string be reversed using recursion?
+
+### How do you check if a string contains only digits?
+
+### How do you count a number of vowels and consonants in a given string?
+
+### How do you find all permutations of a string?
+
+### How do you reverse words in a given sentence without using any library method?
+
+### How do you check if two strings are a rotation of each other?
+
+### How do you check if a given string is a palindrome?
+
+
+## Binary search Trees
+
+### How is a binary search tree implemented?
+
+### How do you perform preorder traversal in a given binary tree?
+
+### How do you traverse a given binary tree in preorder without recursion?
+
+### How do you perform an inorder traversal in a given binary tree?
+
+### How do you print all nodes of a given binary tree using inorder traversal without recursion?
+
+### How do you implement a postorder traversal algorithm?
+
+### How do you traverse a binary tree in postorder traversal without recursion?
+
+### How do you count a number of leaf nodes in a given binary tree?

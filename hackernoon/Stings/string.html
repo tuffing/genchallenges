@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Strings</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+	let test1 = "skjiavjivifinuhweufhjsfnjdsnmnmvx";
+	let test2 = "abcdefgabcdefghi";
+
+	console.log(`Find duplicates expecting s,j,i,v,f,n,u,h,m: Got: ${findDuplicates(test1).join()}`);
+	console.log(`Find duplicates expecting a,b,c,d,e,f,g: Got: ${findDuplicates(test2).join()}`);
+	console.log('----');
+
+	console.log(`Find duplicates expecting yes: Got: ${anagramsCheck('abcd', 'bcda')}`);
+	console.log(`Find duplicates expecting yes: Got: ${anagramsCheck('abcdaa lowly', 'owlly abacda')}`);
+	console.log(`Find duplicates expecting no: Got: ${anagramsCheck('abcdasdg', 'bcdaasdv')}`);
+	console.log(`Find duplicates expecting no: Got: ${anagramsCheck('vbga wer asdb', 'bdsa rew agbn')}`);
+	console.log('----');
+
+	console.log(`Find individuals expecting k: Got: ${firstIndividual(test1)}`);
+	console.log(`Find individuals expecting h: Got: ${firstIndividual(test2)}`);
+	console.log('----');
+
+	console.log(`Recurse reverse expecting olleh: Got: ${reverseRecurse('hello')}`);
+	console.log(`Recurse reverse expecting poiuytrewq: Got: ${reverseRecurse('qwertyuiop')}`);
+	console.log('----');
+
+	console.log(`only digits expecting true: Got: ${onlyDigits('12345')}`);
+	console.log(`only digits expecting false: Got: ${onlyDigits('10987809a')}`);
+	console.log('----');
+
+	console.log(`Count vowels and consonants expecting 4,5: Got: ${countVowelsconsonants('heluiloss').join()}`);
+	console.log(`Count vowels and consonants expecting 5,6: Got: ${countVowelsconsonants('aeiouqwrtyp').join()}`);
+	console.log('----');
+
+	console.log(`Reverse sentence expecting 'hello there hi': Got: '${reverseSentence('hi there hello')}'`);
+	console.log(`Reverse sentence expecting 'one two three four five': Got: '${reverseSentence('five four three two one')}'`);
+
+
+
+
+	function findDuplicates(string) {
+		duplicates = new Map();
+
+		for (let i = 0; i < string.length; i++ ) {
+			if (duplicates.has(string.charAt(i))) {
+				duplicates.set(string.charAt(i), duplicates.get(string.charAt(i)) + 1);
+			}
+			else {
+				duplicates.set(string.charAt(i), 1);
+			}
+		}
+
+		let result = [];
+		duplicates.forEach((v, k) => {
+			if (v > 1) {
+				result.push(k);
+			}
+		});
+
+		return result;
+	}
+
+	function firstIndividual(string) {
+		let letters = new Map();
+
+		for (let i = 0; i < string.length; i++ ) {
+			if (letters.has(string.charAt(i))) {
+				letters.set(string.charAt(i), letters.get(string.charAt(i)) + 1);
+			}
+			else {
+				letters.set(string.charAt(i), 1);
+			}
+		}
+
+		for (let [k, v] of letters.entries()) {
+			if (v == 1) {
+				return k;
+			}
+		}
+
+		return '';
+	}
+
+
+	function anagramsCheck(a,b) {
+		return [...a].sort().join() == [...b].sort().join() ? 'yes' : 'no';
+	}
+
+	function reverseRecurse(string) {
+		if (string.length < 2) {
+			return string;
+		}
+
+		return reverseRecurse(string.substring(1)) + string.charAt(0);
+	}
+
+
+	function onlyDigits(string) {
+		var myRe = /^\d*$/;
+		return myRe.test(string);
+	}
+
+	function countVowelsconsonants(string) {
+		let count = string.split(/[aeiou]*/).length;
+		if (string.search(/^[aeiou]/)===0) {
+			count--;
+		}
+		return [string.length - count, count];
+	}
+
+	function reverseSentence(string) {
+		let rev = string.split(' ');
+		rev.reverse();
+		return rev.join(' ');
+	}
+
+</script>
+<body>
+<h4><em>Check console for working solution</em></h4>
+
+<h1> Strings</h1>
+
+<p>Solve for:</p>
+
+<ul>
+	<li>How do you print duplicate characters from a string?</li>
+	<li>How do you check if two strings are anagrams of each other?</li>
+	<li>How do you print the first non-repeated character from a string?</li>
+	<li>How can a given string be reversed using recursion?</li>
+	<li>How do you check if a string contains only digits?</li>
+	<li>How do you count a number of vowels and consonants in a given string?</li>
+	<li>How do you check if a string contains only digits?</li>
+	<li>How do you reverse words in a given sentence?</li>
+</ul>
+
+</body>
+</html>
