@@ -36,8 +36,21 @@
 
 	console.log(`Reverse sentence expecting 'hello there hi': Got: '${reverseSentence('hi there hello')}'`);
 	console.log(`Reverse sentence expecting 'one two three four five': Got: '${reverseSentence('five four three two one')}'`);
+	console.log('----');
+
+	console.log(`Rotate string expecting true: Got: '${isStringRotation('onetwothreefour', 'fouronetwothree')}'`);
+	console.log(`Rotate string expecting false: Got: '${isStringRotation('onetwothreefour', 'onetwofourthree')}'`);
+	console.log('----');
 
 
+	console.log(`Is Palindrome string expecting true: Got: '${isPalindrome('mom')}'`);
+	console.log(`Rotate string expecting true: Got: '${isPalindrome('Al lets Della call Ed Stella')}'`);
+	console.log(`Rotate string expecting false: Got: '${isPalindrome('Al lets Delsla call Ed Stella')}'`);
+	console.log('----');
+
+	let results = [];
+	permutations('abc', results, '');
+	console.log(`Permutations expecting (in any order) abc,acb,bac,bca,cba,cab: Got: '${results}'`);
 
 
 	function findDuplicates(string) {
@@ -116,6 +129,36 @@
 		return rev.join(' ');
 	}
 
+	function isStringRotation(a, b) {
+		a += a;
+		return a.includes(b);
+	}
+
+	function isPalindrome(string) {
+		string = string.toLowerCase().replace(/\s/g, '');
+
+		for (let i = 0; i < Math.floor(string.length / 2); i++) {
+			if (string.charAt(i) != string.charAt(string.length-1-i)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	function permutations(string, perms, soFar) {
+		if (!string.length) {
+			perms.push(soFar);
+			return;
+		}
+
+		for (let i = 0; i < string.length; i++) {
+			let l = string.charAt(i);
+			permutations(string.substring(0,i) + string.substring(i+1, string.length), perms, soFar + l);
+		}
+	}
+
+
+
 </script>
 <body>
 <h4><em>Check console for working solution</em></h4>
@@ -133,6 +176,8 @@
 	<li>How do you count a number of vowels and consonants in a given string?</li>
 	<li>How do you check if a string contains only digits?</li>
 	<li>How do you reverse words in a given sentence?</li>
+	<li>How do you check if two strings are a rotation of each other?</li>
+	<li>How do you check if a given string is a palindrome</li>
 </ul>
 
 </body>
