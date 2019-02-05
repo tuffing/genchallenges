@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Binary Trees</title>
+</head>
+<meta charset="UTF-8"> 
+<script type="text/javascript">
+	
+
+class Node {
+
+  constructor(value) {
+  	this.value = value;
+    this.left = null;
+    this.right = null;
+    this.count = 1;
+  }
+
+  setLeft(left) {
+    this.left = left;
+  }
+
+  setRight(right) {
+  	this.right = right;
+  }
+
+  insert(value) {
+  	if (value < this.value) {
+  		this.left = this.insertNode(this.left, value);
+  	}
+
+  	if (value > this.value) {
+  		this.right = this.insertNode(this.right, value);
+  	}
+
+  	if (value == this.value) {
+  		this.count++;
+  	}
+  }
+
+  insertNode(node, value) {
+  	if (node != null) {
+  		node.insert(value);
+  		return node;
+  	}
+
+  	return new Node(value);
+  }
+
+}
+
+let tree = new Node(6);
+let testList = [19,7,4,4,25,28,21,18,12,20,6,17,1,13,11,26,2,3,9,22,27,14,24,29,16,5,10,23,8,30,15];
+
+testList.forEach((v) => {
+	tree.insert(v);
+});
+
+let hi = 'a';
+
+
+
+</script>
+<body>
+<h4><em>Check console for working solution</em></h4>
+
+<h1> Binary Trees</h1>
+
+<p>Solve for:</p>
+
+<ul>
+	<li>Implement a Binary Tree</li>
+
+</ul>
+
+</body>
+</html>

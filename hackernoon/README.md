@@ -84,13 +84,14 @@ These are broken into categories for reference.
 
 ### How is a binary search tree implemented?
 
+### How do you print all nodes of a given binary tree using inorder traversal with / without recursion?
+
 ### How do you perform preorder traversal in a given binary tree?
 
 ### How do you traverse a given binary tree in preorder without recursion?
 
 ### How do you perform an inorder traversal in a given binary tree?
 
-### How do you print all nodes of a given binary tree using inorder traversal without recursion?
 
 ### How do you implement a postorder traversal algorithm?
 
