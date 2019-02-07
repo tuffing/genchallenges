@@ -4,16 +4,39 @@
 	<title>Binary Trees</title>
 </head>
 <meta charset="UTF-8"> 
+<body>
+<h4><em>Check console for working solution</em></h4>
+
+<h1> Binary Trees</h1>
+
+<svg id="Tree" viewBox="0 0 200 100" style="width:450px;" xmlns="http://www.w3.org/2000/svg">
+ <style>
+    .leaf { fill:rgb(255,255,255);stroke-width:1;stroke:rgb(0,0,0) }
+    text { font: italic 5px serif; fill: #000; }
+  </style>
+  <!-- Rounded corner rect element -->
+  <!--rect class="leaf" x="203" y="2" width="10" height="10" rx="3" ry="3" /-->
+</svg>
+
+<p>Solve for:</p>
+
+<ul>
+	<li>Implement a Binary Tree</li>
+
+</ul>
+
 <script type="text/javascript">
 	
 
 class Node {
 
-  constructor(value) {
+  constructor(value, depth) {
   	this.value = value;
     this.left = null;
     this.right = null;
     this.count = 1;
+
+    this.depth = !depth ? 1 : depth; 
   }
 
   setLeft(left) {
@@ -44,7 +67,7 @@ class Node {
   		return node;
   	}
 
-  	return new Node(value);
+  	return new Node(value, this.depth+1);
   }
 
 }
@@ -56,22 +79,31 @@ testList.forEach((v) => {
 	tree.insert(v);
 });
 
-let hi = 'a';
+let height = 2;
+let centreleft = 203;
+let left = 203;
 
+
+drawLeaf(tree, 2, 70, 50);
+
+
+function drawLeaf(node, height, left, gap) {
+	var svg = document.getElementById('Tree');
+	gap *= .75;
+	svg.insertAdjacentHTML('beforeend', `<text x="${left + 2}" y="${height + 7}">${node.value}</text>`);
+
+	if (node.left) {
+		drawLeaf(node.left, height+10, left-gap, gap);
+		svg.insertAdjacentHTML('beforeend', `<line x1="${left+4}" y1="${height+7}" x2="${left-gap+4}" y2="${height+13}" stroke="black" stroke-width=".2" />`);
+	}
+	if (node.right) {
+		drawLeaf(node.right, height+10, left+gap, gap);
+		svg.insertAdjacentHTML('beforeend', `<line x1="${left+4}" y1="${height+7}" x2="${left+gap+4}" y2="${height+13}" stroke="black" stroke-width=".2" />`);
+	}
+}
 
 
 </script>
-<body>
-<h4><em>Check console for working solution</em></h4>
-
-<h1> Binary Trees</h1>
-
-<p>Solve for:</p>
-
-<ul>
-	<li>Implement a Binary Tree</li>
-
-</ul>
 
 </body>
 </html>
