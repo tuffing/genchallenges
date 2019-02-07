@@ -79,18 +79,16 @@ testList.forEach((v) => {
 	tree.insert(v);
 });
 
-let height = 2;
-let centreleft = 203;
-let left = 203;
 
 
+//draw the tree.. will only really work for our tree, not with out better effort lay it out.. trees get cluttered quick
 drawLeaf(tree, 2, 70, 50);
 
 
 function drawLeaf(node, height, left, gap) {
 	var svg = document.getElementById('Tree');
 	gap *= .75;
-	svg.insertAdjacentHTML('beforeend', `<text x="${left + 2}" y="${height + 7}">${node.value}</text>`);
+	svg.insertAdjacentHTML('beforeend', `<text x="${left + 2}" y="${height + 7}">${node.value}${node.count != 1 ? `(x${node.count})` : ''}</text>`);
 
 	if (node.left) {
 		drawLeaf(node.left, height+10, left-gap, gap);
