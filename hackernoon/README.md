@@ -90,9 +90,6 @@ These are broken into categories for reference.
 
 ### How do you traverse a given binary tree in preorder without recursion?
 
-### How do you perform an inorder traversal in a given binary tree?
-
-
 ### How do you implement a postorder traversal algorithm?
 
 ### How do you traverse a binary tree in postorder traversal without recursion?

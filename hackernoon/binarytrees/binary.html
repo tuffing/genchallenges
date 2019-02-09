@@ -84,7 +84,21 @@ let res = [];
 inorderRecursion(tree, res);
 console.log(`In order traversal recursion ${res.join()}`);
 
-console.log(`In order traversal no recursion ${inorderNotRecursive(tree).join()}`);
+console.log(`In order traversal iterative ${inorderNotRecursive(tree).join()}`);
+
+res = [];
+preorderRecursion(tree, res);
+console.log(`pre order traversal recursion ${res.join()}`);
+
+console.log(`pre order traversal iterative ${preorderNotRecursive(tree).join()}`);
+
+res = [];
+postorderRecursion(tree, res);
+console.log(`post order traversal recursion ${res.join()}`);
+
+console.log(`post order traversal iterative ${postorderNotRecursive(tree).join()}`);
+
+console.log(`Count leaves ${countLeaves(tree)}`);
 
 
 //draw the tree.. will only really work for our tree, not with out better effort lay it out.. trees get cluttered quick
@@ -104,6 +118,17 @@ function drawLeaf(node, height, left, gap) {
 		drawLeaf(node.right, height+10, left+gap, gap);
 		svg.insertAdjacentHTML('beforeend', `<line x1="${left+4}" y1="${height+7}" x2="${left+gap+4}" y2="${height+13}" stroke="black" stroke-width=".2" />`);
 	}
+}
+
+function countLeaves(node) {
+	count = 1;
+	if (node.left)
+		count += countLeaves(node.left);
+
+	if (node.right)
+		count += countLeaves(node.right);
+
+	return count;
 }
 
 function inorderRecursion(node, arr) {
@@ -140,6 +165,73 @@ function inorderNotRecursive(tree) {
 
 }
 
+function preorderRecursion(node, arr) {
+	// preorder  (Root, Left, Right))
+	arr.push(node.value);
+
+	if (node.left)
+		preorderRecursion(node.left, arr);
+
+	if (node.right)
+		preorderRecursion(node.right, arr);
+}
+
+function preorderNotRecursive(tree) {
+	let q = [];
+
+	let order = [];
+	// preorder  (Root, Left, Right))
+
+	let curr = tree;
+	while (q.length || curr != null) {
+		if (curr != null) {
+			q.push(curr);
+			order.push(curr.value);
+			curr = curr.left;
+			continue;
+		}
+
+		let popped = q.pop();
+		curr = popped.right;
+
+	}
+
+	return order;
+}
+
+function postorderRecursion(node, arr) {
+	// postorder  (Left, Right, Root)
+	if (node.left)
+		postorderRecursion(node.left, arr);
+
+	if (node.right)
+		postorderRecursion(node.right, arr);
+
+	arr.push(node.value);
+}
+
+function postorderNotRecursive(tree) {
+	let q1 = [];
+	let order = [];
+	// Inorder  (Left, Right, Root)
+
+	let curr = tree;
+	q1.push(curr);
+
+	while (q1.length) {
+		let popped = q1.pop();
+		order.push(popped.value);
+		if (popped.left)
+			q1.push(popped.left);
+
+		if (popped.right)
+			q1.push(popped.right);
+	}
+
+	order.reverse();
+
+	return order;
+}
 
 </script>
 
