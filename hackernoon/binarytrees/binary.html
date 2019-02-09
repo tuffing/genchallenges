@@ -79,6 +79,12 @@ testList.forEach((v) => {
 	tree.insert(v);
 });
 
+//inorder traversal with recursion
+let res = [];
+inorderRecursion(tree, res);
+console.log(`In order traversal recursion ${res.join()}`);
+
+console.log(`In order traversal no recursion ${inorderNotRecursive(tree).join()}`);
 
 
 //draw the tree.. will only really work for our tree, not with out better effort lay it out.. trees get cluttered quick
@@ -98,6 +104,40 @@ function drawLeaf(node, height, left, gap) {
 		drawLeaf(node.right, height+10, left+gap, gap);
 		svg.insertAdjacentHTML('beforeend', `<line x1="${left+4}" y1="${height+7}" x2="${left+gap+4}" y2="${height+13}" stroke="black" stroke-width=".2" />`);
 	}
+}
+
+function inorderRecursion(node, arr) {
+	// Inorder (Left, Root, Right
+	if (node.left)
+		inorderRecursion(node.left, arr);
+
+	arr.push(node.value);
+
+	if (node.right)
+		inorderRecursion(node.right, arr);
+}
+
+function inorderNotRecursive(tree) {
+	let q = [];
+
+	let order = [];
+
+	let curr = tree;
+	while (q.length || curr != null) {
+		if (curr != null) {
+			q.push(curr);
+			curr = curr.left;
+			continue;
+		}
+
+		let popped = q.pop();
+		order.push(popped.value);
+		curr = popped.right;
+
+	}
+
+	return order;
+
 }
 
 
